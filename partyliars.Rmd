@@ -68,13 +68,14 @@ Now that we have this function then apply it to the list of predictions, iterati
 # For each percentage of liars we want to display run the function to calculate the result.?
 result = sapply(p_liars, percentReportedHeads)
 
-plot(x=p_liars, y=result, 
+plot(x=result, y=p_liars, 
      main="Each 1% increase in Correct Predictions Implies\n 2% More of Guests are Liars",
      sub="Based on Dan Ariely's 9/14/13 WSJ column 'A New Party Game: Who's Dishonest",
-     xlab="Percentage of guests who are liars",
-     ylab="Percentage of guests reporting correct prediction",
-     ylim=c(0,1)
+     ylab="Percentage of guests who are liars",
+     xlab="Percentage of guests reporting correct prediction",
+     xlim=c(0,1)
      )
-m <- lm(result ~ p_liars)
+grid()
+m <- lm(p_liars ~ result)
 abline(m)
 ```

@@ -40,7 +40,7 @@ p_correct <- length(correct[correct == TRUE])/guests
 ```
 
 
-In this run ``52.1``% of the guests guessed correctly. Now to find some liars. I wanted to create a graph showing the percentage reporting a correct guess as the percentage of liars increased. To do this first I create an array that ranges from 0% to 100% liars in steps of 1%:
+In this run ``51.5``% of the guests guessed correctly. Now to find some liars. I wanted to create a graph showing the percentage reporting a correct guess as the percentage of liars increased. To do this first I create an array that ranges from 0% to 100% liars in steps of 1%:
 
 
 ```r
@@ -82,11 +82,12 @@ Now that we have this function then apply it to the list of predictions, iterati
 # calculate the result.?
 result = sapply(p_liars, percentReportedHeads)
 
-plot(x = p_liars, y = result, main = "Each 1% increase in Correct Predictions Implies\n 2% More of Guests are Liars", 
+plot(x = result, y = p_liars, main = "Each 1% increase in Correct Predictions Implies\n 2% More of Guests are Liars", 
     sub = "Based on Dan Ariely's 9/14/13 WSJ column 'A New Party Game: Who's Dishonest", 
-    xlab = "Percentage of guests who are liars", ylab = "Percentage of guests reporting correct prediction", 
-    ylim = c(0, 1))
-m <- lm(result ~ p_liars)
+    ylab = "Percentage of guests who are liars", xlab = "Percentage of guests reporting correct prediction", 
+    xlim = c(0, 1))
+grid()
+m <- lm(p_liars ~ result)
 abline(m)
 ```
 
